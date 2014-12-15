@@ -6,7 +6,7 @@ class Self_update:
         """ set up repos and commands"""
         self.home = os.path.expanduser('~')
         home = self.home
-        self.repos = [ home + '/.vim/after/plugin/VundleHelper' ]
+        self.repos = [ home + '/.vim/after/plugin/Vundle-Helper' ]
         # arrays used in subprocess.call and such
         self.pull = ['git', 'pull']
         self.fetch = ['git', 'fetch']
@@ -108,6 +108,11 @@ class Self_update:
         """ simplify calling stuff"""
         repos = self.repos
         for repo in repos:
-            p = multiprocessing.Process(target=Self_update().do_it, args=(repo,))
-            p.start()
-            p.join()
+            print "running update"
+            Self_update().do_it(repo)
+
+
+def VundleHelper_self_update():
+    s = Self_update()
+    s.run()
+VundleHelper_self_update()
