@@ -40,6 +40,7 @@ call feedkeys('<CR>')
 
 function! VundleHelper#SelfUpdate()
 python << endOfPython
+import Self_update
 from VundleHelper import VundleHelper_run_updates
 VundleHelper_run_updates()
 endOfPython
