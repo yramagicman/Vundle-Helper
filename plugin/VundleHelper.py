@@ -1,4 +1,4 @@
-import os, vim, datetime, time
+import os, vim, datetime, time, Self_update
 from subprocess import call, check_output
 home = os.path.expanduser('~')
 
@@ -132,5 +132,5 @@ def VundleHelper_run_updates():
             VundleHelper_write_last_update()
 
 def VundleHelper_self_update():
-    s = Self_update()
+    s = Self_update.Self_update()
     s.run()

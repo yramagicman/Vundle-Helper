@@ -115,4 +115,3 @@ class Self_update:
 def VundleHelper_self_update():
     s = Self_update()
     s.run()
-VundleHelper_self_update()
