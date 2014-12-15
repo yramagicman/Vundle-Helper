@@ -1,4 +1,4 @@
-*VundleHelper.txt* A plugin for synchronizing plugins across systems and
+*VundleHelper.txt* A plugin for automatically synchronizing plugins across systems and
 keeping them updated.
 
 ===============================================================================
@@ -38,6 +38,14 @@ IMPORTANT:
 In order for this to work, the plugin must be pulled down with your dotfiles
 and sourced from .vim/after/plugin. If this plugin isn't pulled down with your
 dotfiles it can't do what it's supposed to do.
+
+3a. Installation
+Run the following commands:
+mkdir -p ~/.vim/after/plugin
+cd ~/.vim/after/plugin
+git submodule add  https://github.com/yramagicman/Vundle-Helper
+touch pluginsync.vim
+echo "source ~/.vim/after/plugin/Vundle-Helper/plugin/VundleHelper.vim" >> pluginsync.vim
 
 Commands:
     - Update: Checks the last time your plugins were updated and runs the
