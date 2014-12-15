@@ -37,3 +37,11 @@ endfunction
 command! VHUpdate call VundleHelper#Update()
 call VundleHelper#Update()
 call feedkeys('<CR>')
+
+function! VundleHelper#SelfUpdate()
+python << endOfPython
+from VundleHelper import VundleHelper_run_updates
+VundleHelper_run_updates()
+endOfPython
+endfunction
+autocmd! VimLeave call VundleHelper#SelfUpdate()
