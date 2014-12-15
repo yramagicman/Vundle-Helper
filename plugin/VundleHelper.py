@@ -1,4 +1,4 @@
-import os, vim, datetime, time, itertools
+import os, vim, datetime, time
 from subprocess import call, check_output
 home = os.path.expanduser('~')
 
