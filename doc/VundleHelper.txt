@@ -1,6 +1,10 @@
 *VundleHelper.txt* A plugin for automatically synchronizing plugins across systems and
 keeping them updated.
 
+IMPORTANT: Make sure you read the installation instructions. This plugin isn't
+meant to live in your .vim/bundle folder. If you put it there, it can't do its
+job when you switch computers.
+
 ===============================================================================
 CONTENTS                                                         *VundleHelper*
 
