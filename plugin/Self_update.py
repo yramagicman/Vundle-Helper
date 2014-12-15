@@ -1,4 +1,3 @@
-#!/usr/bin/env python2
 import os, multiprocessing, subprocess, sys
 class Self_update:
     """ updates git stuff, hopefully in parallel"""
@@ -76,3 +75,4 @@ class Self_update:
         for repo in repos:
             print "running update"
             Self_update().do_it(repo)
+# Copyright Jonathan Gilson 2014

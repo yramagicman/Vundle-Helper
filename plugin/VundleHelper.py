@@ -138,3 +138,5 @@ def VundleHelper_self_update():
     if next < time.time():
         s = Self_update.Self_update()
         s.run()
+
+# Copyright Jonathan Gilson 2014

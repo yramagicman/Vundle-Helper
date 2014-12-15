@@ -105,7 +105,7 @@ g:VundleHelper_Update_Frequency               *g:VundleHelper_Update_Frequency*
 
 If you make improvements, I'd like them back, but that's not required. Other
 than that, this is yours to do with as you please. The only thing I require is
-that you don't remove the copyrite notice.
+that you don't remove the copyright notice.
 
 5. Known issues                                     *VundleHelper-known-issues*
 
@@ -114,9 +114,9 @@ that you don't remove the copyrite notice.
 
     2. Currently this plugin can't be installed via Vundle and work the way
     it's designed to work. I intend to write an install function that enables
-    this, but currently I don't know of a good way to do this. Idealy I'd use a
+    this, but currently I don't know of a good way to do this. Ideally I'd use a
     git post-checkout hook to hard link the files into the right location, but
-    I don't know how to impliment that. I'll probably end up implimenting
+    I don't know how to implement that. I'll probably end up implementing
     something in python.
 
     3. Doesn't work on Windows, and I have no plans of porting to Windows. I
@@ -125,3 +125,5 @@ that you don't remove the copyrite notice.
     purely in python, but I'm fairly sure that os level commands are more
     reliable and probably faster. I'm certain that os level commands are easier
     to write.
+
+Copyright Jonathan Gilson 2014

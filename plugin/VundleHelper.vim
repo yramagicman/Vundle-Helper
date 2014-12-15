@@ -46,3 +46,6 @@ endfunction
 command! VHUpdate call VundleHelper#Update()
 call VundleHelper#Update()
 call feedkeys('<CR>')
+
+
+" Copyright Jonathan Gilson 2014
