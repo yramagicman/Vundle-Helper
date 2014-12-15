@@ -110,8 +110,3 @@ class Self_update:
         for repo in repos:
             print "running update"
             Self_update().do_it(repo)
-
-
-def VundleHelper_self_update():
-    s = Self_update()
-    s.run()
