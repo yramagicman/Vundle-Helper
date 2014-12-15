@@ -15,17 +15,6 @@ class Self_update:
         self.remote_status = ['git', 'rev-parse', '@{u}']
         self.merge_base = ['git', 'merge-base', '@', '@{u}']
 
-    def num_changes(self):
-        """ Gets the number of changes to a git repo"""
-        git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
-        grep = subprocess.Popen(['grep', 'modified'], stdin=git.stdout, stdout=subprocess.PIPE)
-        wc = subprocess.Popen(['wc', '-l'], stdin=grep.stdout, stdout=subprocess.PIPE)
-        git.stdout.close()
-        grep.stdout.close()
-        output, err = wc.communicate()
-        output = output.strip()
-        if not err:
-            return output
 
     def diff_changes(self, ext=False):
         """ Lists changes to a git repo """
@@ -71,31 +60,8 @@ class Self_update:
         subprocess.call(self.fetch)
         stat = self.check_status()
         dir = os.getcwd().replace(self.home, '~')
-        if stat != 0:
-            if stat == -1:
-                print str(subprocess.call(pull))
-            elif stat == 1:
-                print  str(subprocess.call(push))
-            else:
-                # since nothings equal, we'll pull, then push
-                print str(subprocess.call(pull))
-                print str(subprocess.call(push))
-        else:
-            print self.show_message()
-
-    def show_message(self):
-        """ returns the message displayed to the user"""
-        changes = self.num_changes()
-        dir = os.getcwd().replace(self.home, '~')
-        if int(changes) == 1:
-            message =  '\n' + dir + ' is up to date with ' + changes + ' change unstaged. \n\t'
-        else:
-            if int(changes) > 0:
-                message =  '\n' +  dir + ' is up to date with ' + changes + ' unstaged changes.\n\t'
-            else:
-                message =  '\n' + dir + ' is up to date with ' + changes + ' unstaged changes.'
-        message = message + self.list_changes()
-        return message #end function
+        print str(subprocess.call(pull))
+        print  str(subprocess.call(push))
 
     def do_it(self, repo):
         """ wrapper function, checks current working directory and does the
