@@ -1,4 +1,4 @@
-import os, vim, datetime, time, self_update
+import os, vim, datetime, time, Self_update
 from subprocess import call, check_output
 home = os.path.expanduser('~')
 
