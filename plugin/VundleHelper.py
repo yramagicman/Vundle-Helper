@@ -4,9 +4,9 @@ home = os.path.expanduser('~')
 
 def VundleHelper_sanity_check():
     # Make sure variables exist. The script only requires
-    # g:Install_Setup_Folders.
-    dir_tree_defined = int(vim.eval('exists("g:Install_Setup_Folders")'))
-    plugin_file_defined = int(vim.eval('exists("g:Install_Plugin_File")'))
+    # g:VundleHelper_Setup_Folders.
+    dir_tree_defined = int(vim.eval('exists("g:VundleHelper_Setup_Folders")'))
+    plugin_file_defined = int(vim.eval('exists("g:VundleHelper_Plugin_File")'))
     # Check for .vim/bundle. The script breaks without it.
     if not os.path.exists(home + '/.vim/bundle'):
         cmd= ['mkdir', '-p']
@@ -15,18 +15,18 @@ def VundleHelper_sanity_check():
         call(cmd)
     # If both config variables are defined, return their values.
     if dir_tree_defined and  plugin_file_defined:
-        dir_tree = vim.eval("g:Install_Setup_Folders")
-        plugin_file = vim.eval("g:Install_Plugin_File")
+        dir_tree = vim.eval("g:VundleHelper_Setup_Folders")
+        plugin_file = vim.eval("g:VundleHelper_Plugin_File")
         return dir_tree, plugin_file
-    # If g:Install_Setup_Folders is defined, return its value and the location
+    # If g:VundleHelper_Setup_Folders is defined, return its value and the location
     # of the .vimrc file
     elif dir_tree_defined and not plugin_file_defined:
         plugin_file= vim.eval('$MYVIMRC')
-        dir_tree = vim.eval("g:Install_Setup_Folders")
+        dir_tree = vim.eval("g:VundleHelper_Setup_Folders")
         return dir_tree, plugin_file
     # When all else fails print an error message.
     else:
-        print 'You must at least define g:Install_Setup_Folders for this to work.'
+        print 'You must at least define g:VundleHelper_Setup_Folders for this to work.'
 
 # Set variables globally
 setup_folders, plugin_file = VundleHelper_sanity_check()
@@ -84,9 +84,9 @@ def VundleHelper_run_install():
         vim.command('PluginClean')
 
 def VundleHelper_update_how_often():
-    often_set = int(vim.eval('exists("g:Install_Update_Frequency")'))
+    often_set = int(vim.eval('exists("g:VundleHelper_Update_Frequency")'))
     if often_set:
-        return vim.eval('g:Install_Update_Frequency')
+        return vim.eval('g:VundleHelper_Update_Frequency')
     else:
         return False
 

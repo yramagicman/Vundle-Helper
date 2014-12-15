@@ -49,17 +49,17 @@ Commands:
 
 Options:
 
-g:Install_Setup_Folders                               *g:Install_Setup_Folders*
+g:VundleHelper_Setup_Folders                               *g:VundleHelper_Setup_Folders*
 
     REQUIRED! A list of directories that you want in your ~/.vim directory.
     This option is great if you keep your backups and swaps in a centralized
     location.
 
     Example:
-    let g:Install_Setup_Folders = ['autoload', 'backup', 'bundle', 'colors',
+    let g:VundleHelper_Setup_Folders = ['autoload', 'backup', 'bundle', 'colors',
     'config', 'doc', 'snippets', 'spell', 'swaps', 'syntax', 'tags', 'undo' ]
 
-g:Install_Plugin_File                                   *g:Install_Plugin_File*
+g:VundleHelper_Plugin_File                                   *g:VundleHelper_Plugin_File*
 
     If you keep your plugins listed in a separate file this is the file that
     you keep your plugins in. If a file isn't specified your ~/.vimrc is used.
@@ -69,16 +69,16 @@ g:Install_Plugin_File                                   *g:Install_Plugin_File*
     directory.
 
     Example:
-    let g:Install_Plugin_File = '/.vim/config/extensions/vundle.vim'
+    let g:VundleHelper_Plugin_File = '/.vim/config/extensions/vundle.vim'
 
-g:Install_Update_Frequency                         *g:Install_Update_Frequency*
+g:VundleHelper_Update_Frequency                         *g:VundleHelper_Update_Frequency*
 
     Defaults to 30 days. This defines the number of days to wait between
     updating your plugins. The information regarding the last update is stored
     in ~/.vim/lastupdate as two unix time stamps.
 
     Example:
-    g:Install_Update_Frequency=15
+    g:VundleHelper_Update_Frequency=15
 
 4. License                                               *VundleHelper-license*
 
