@@ -132,5 +132,9 @@ def VundleHelper_run_updates():
             VundleHelper_write_last_update()
 
 def VundleHelper_self_update():
-    s = Self_update.Self_update()
-    s.run()
+    dates = VundleHelper_read_update_cache()
+    next = VundleHelper_get_next_update(dates)
+    freq = VundleHelper_update_how_often()
+    if next < time.time():
+        s = Self_update.Self_update()
+        s.run()
