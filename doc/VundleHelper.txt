@@ -23,8 +23,7 @@ one computer to another as simple as installing git and Vim, cloning your
 dotfiles and opening Vim.
 
 VundleHelper is also self-updating, so you don't need Vundle to manage the
-updates for you. When VundleHelper updates the rest of your plugins it will
-also automatically update itself after you close Vim. This way you don't have
+updates for you. When VundleHelper updates the rest of your plugins. It will automatically update itself after you close Vim. This way you don't have
 to wait for vundlehelper to update along with the rest of the plugins before
 you get to work.
 
