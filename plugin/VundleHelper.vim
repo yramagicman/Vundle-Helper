@@ -8,6 +8,15 @@ python sys.path.append(vim.eval('expand("<sfile>:h")'))
 " --------------------------------
 "  Function(s)
 " --------------------------------
+function! VundleHelper#SelfUpdate()
+python << endOfPython
+import Self_update
+from VundleHelper import VundleHelper_self_update
+VundleHelper_self_update()
+endOfPython
+endfunction
+autocmd! VimLeave call VundleHelper#SelfUpdate()
+
 function! VundleHelper#Install()
 python << endOfPython
 
@@ -29,6 +38,7 @@ python << endOfPython
 from VundleHelper import VundleHelper_run_updates
 VundleHelper_run_updates()
 endOfPython
+call VundleHelper#SelfUpdate()
 endfunction
 
 " --------------------------------
@@ -38,11 +48,4 @@ command! VHUpdate call VundleHelper#Update()
 call VundleHelper#Update()
 call feedkeys('<CR>')
 
-function! VundleHelper#SelfUpdate()
-python << endOfPython
-import Self_update
-from VundleHelper import VundleHelper_self_update
-VundleHelper_self_update()
-endOfPython
-endfunction
-autocmd! VimLeave call VundleHelper#SelfUpdate()
+
