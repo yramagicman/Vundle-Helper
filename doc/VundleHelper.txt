@@ -7,6 +7,7 @@ CONTENTS                                                         *VundleHelper*
     1. Intro ............................................. |VundleHelper-intro|
     2. Requirements ............................... |VundleHelper-requirements|
     3. Usage ............................................. |VundleHelper-usage|
+    3a. Installation .............................. |VundleHelper-installation|
     4. License ......................................... |VundleHelper-license|
     5. Known Issues ............................... |VundleHelper-known-issues|
 ===============================================================================
@@ -39,7 +40,8 @@ In order for this to work, the plugin must be pulled down with your dotfiles
 and sourced from .vim/after/plugin. If this plugin isn't pulled down with your
 dotfiles it can't do what it's supposed to do.
 
-3a. Installation
+3a. Installation:                                   *VundleHelper-installation*
+
 Run the following commands:
 mkdir -p ~/.vim/after/plugin
 cd ~/.vim/after/plugin
