@@ -50,10 +50,10 @@ touch pluginsync.vim
 echo "source ~/.vim/after/plugin/Vundle-Helper/plugin/VundleHelper.vim" >> pluginsync.vim
 
 Commands:
-    - Update: Checks the last time your plugins were updated and runs the
+    - VHUpdate: Checks the last time your plugins were updated and runs the
       updates if they haven't been updated in a specified amount of time.
 
-    - Install: Reads your plugin list and compares it to the plugins you have
+    - VHInstall: Reads your plugin list and compares it to the plugins you have
       installed. If the lists match nothing is done, if they don't match
       plugins are added or removed to make them match.
 
