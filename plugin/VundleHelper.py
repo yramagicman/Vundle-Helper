@@ -61,7 +61,7 @@ def VundleHelper_check_installation():
 
 def VundleHelper_clean_up():
     listed = VundleHelper_read_bundle(home + plugin_file)
-    remove = check_dir()
+    remove = VundleHelper_check_dir()
     to_remove = []
     for i in remove:
         if i not in listed:
