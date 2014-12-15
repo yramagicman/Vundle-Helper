@@ -8,7 +8,7 @@ python sys.path.append(vim.eval('expand("<sfile>:h")'))
 " --------------------------------
 "  Function(s)
 " --------------------------------
-function! Install()
+function! VundleHelper#Install()
 python << endOfPython
 
 from VundleHelper import VundleHelper_run_install
@@ -19,11 +19,11 @@ endfunction
 " --------------------------------
 "  Expose our commands to the user
 " --------------------------------
-command! Install call Install()
-call Install()
+command! VHInstall call VundleHelper#Install()
+call VundleHelper#Install()
 call feedkeys('<CR>')
 
-function! Update()
+function! VundleHelper#Update()
 python << endOfPython
 
 from VundleHelper import VundleHelper_run_updates
@@ -34,6 +34,6 @@ endfunction
 " --------------------------------
 "  Expose our commands to the user
 " --------------------------------
-command! Update call Update()
-call Update()
+command! VHUpdate call VundleHelper#Update()
+call VundleHelper#Update()
 call feedkeys('<CR>')
