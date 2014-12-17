@@ -136,7 +136,6 @@ def VundleHelper_self_update():
     next = VundleHelper_get_last_update(dates)
     freq = VundleHelper_update_how_often()
     print dates[2]
-    time.sleep(3)
     if dates[2] == 'true':
         VundleHelper_git_opperation()
         VundleHelper_write_last_update(freq,False)
