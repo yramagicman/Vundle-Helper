@@ -134,10 +134,11 @@ def VundleHelper_run_updates():
             VundleHelper_write_last_update()
 
 def VundleHelper_self_update():
+    one_day = 1 * 24 * 60 * 60
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_next_update(dates)
     freq = VundleHelper_update_how_often()
-    if next < time.time():
+    if next < time.time() + one_day:
         s = Self_update.Self_update()
         s.run()
 
