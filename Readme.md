@@ -1,7 +1,7 @@
 # VundleHelper
 A plugin for automatically synchronizing plugins across systems and keeping them updated.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/G_5oD8t2F1Q" frameborder="0" allowfullscreen></iframe>
+<a href="https://www.youtube.com/watch?v=G_5oD8t2F1Q&feature=youtu.be&t=29"><img src="http://i.giflike.com/ZfH9dkI.gif" title="Working on not working (Click to see on Youtube)" /></a>
 
 **IMPORTANT**: Make sure you read the installation instructions. This plugin isn't meant to live in your .vim/bundle folder. If you put it there, it can't do its job when you switch computers.
 
