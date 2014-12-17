@@ -100,8 +100,6 @@ def VundleHelper_read_update_cache():
         return dates.split('\n')
     except:
         print "Update cache not found. Running updates and writing new file."
-        time.sleep(2)
-        #vim.command('PluginUpdate')
         return VundleHelper_write_last_update()
 
 def VundleHelper_get_last_update(dates):
