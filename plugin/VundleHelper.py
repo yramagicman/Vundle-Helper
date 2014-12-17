@@ -147,7 +147,7 @@ def VundleHelper_git_opperation():
     # arrays used in subprocess.call and such
     fetch = ['git', 'fetch', '--all']
     merge = ['git', 'reset', '--hard', 'origin/master']
-    print "running update \n"
+    print "running update" + '\n'
     os.chdir(repo)
     print str(call(fetch) + '\n')
     print  str(call(merge))
