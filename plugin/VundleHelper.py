@@ -99,7 +99,7 @@ def VundleHelper_read_update_cache():
         f.close()
         return dates.split('\n')
     except:
-        print "File not found. Running updates and writing new file."
+        print "Update cache not found. Running updates and writing new file."
         time.sleep(2)
         #vim.command('PluginUpdate')
         return VundleHelper_write_last_update()
@@ -137,7 +137,6 @@ def VundleHelper_self_update():
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_last_update(dates)
     freq = VundleHelper_update_how_often()
-    print dates[2]
     if dates[2] == 'true':
         VundleHelper_git_opperation()
         VundleHelper_write_last_update(freq,False)
@@ -150,7 +149,7 @@ def VundleHelper_git_opperation():
     merge = ['git', 'reset', '--hard', 'origin/master']
     print "running update"
     os.chdir(repo)
-    print str(call(fetch))
+    print str(call(fetch) + '\n')
     print  str(call(merge))
 
 # Copyright Jonathan Gilson 2014
