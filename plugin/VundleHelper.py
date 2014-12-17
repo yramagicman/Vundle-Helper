@@ -1,4 +1,4 @@
-import os, vim, datetime, time, Self_update
+import os, vim, datetime, time
 from subprocess import call, check_output
 home = os.path.expanduser('~')
 
@@ -72,6 +72,7 @@ def VundleHelper_run_install():
     if len(VundleHelper_check_installation()) > 0:
         os.chdir(home + '/.vim/')
         call(['mkdir', '-p'] + setup_folders)
+        VundleHelper_write_last_update()
         if 'Vundle.vim' in VundleHelper_check_installation():
             VundleHelper_pkg_manager_install()
             # Source .vimrc to make sure the package manager is loaded
@@ -90,14 +91,14 @@ def VundleHelper_update_how_often():
     if often_set:
         return vim.eval('g:VundleHelper_Update_Frequency')
     else:
-        return False
+        return 30
 
 def VundleHelper_read_update_cache():
     try:
         f = open(home + '/.vim/lastupdate', 'r')
         dates = f.read()
         f.close()
-        return dates
+        return dates.split('\n')
     except:
         print "File not found. Running updates and writing new file."
         time.sleep(2)
@@ -105,20 +106,22 @@ def VundleHelper_read_update_cache():
         return VundleHelper_write_last_update()
 
 def VundleHelper_get_last_update(dates):
-    date = dates.split('\n')
     date= float(date[0])
     return date
 
 def VundleHelper_get_next_update(dates):
-    date = dates.split('\n')
     date= float(date[1])
     return date
 
-def VundleHelper_write_last_update(days=30):
+def VundleHelper_write_last_update(days=30, flag=True):
     next = days * 24 * 60 * 60
     f = open(home + '/.vim/lastupdate', 'w')
     f.write(str(time.time()) + '\n')
-    f.write(str(time.time() + next))
+    f.write(str(time.time() + next) + '\n')
+    if flag:
+        f.write('true')
+    else:
+        f.write('false')
     f.close()
     return str(time.time()) + '\n' + str(time.time() + next)
 
@@ -128,18 +131,26 @@ def VundleHelper_run_updates():
     freq = VundleHelper_update_how_often()
     if next < time.time():
         vim.command('PluginUpdate')
-        if freq:
-            VundleHelper_write_last_update(freq)
-        else:
-            VundleHelper_write_last_update()
+        VundleHelper_write_last_update(freq)
 
 def VundleHelper_self_update():
     one_day = 1 * 24 * 60 * 60
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_last_update(dates)
     freq = VundleHelper_update_how_often()
-    if next < time.time() + one_day:
-        s = Self_update.Self_update()
-        s.run()
+    if dates[2] == 'true':
+        VundleHelper_git_opperation()
+        VundleHelper_write_last_update(freq,False)
+
+def VundleHelper_git_opperation():
+    home = os.path.expanduser('~')
+    repo =  home + '/.vim/after/plugin/Vundle-Helper'
+    # arrays used in subprocess.call and such
+    fetch = ['git', 'fetch', '--all']
+    merge = ['git', 'reset', '--hard', 'origin/master']
+    print "running update"
+    os.chdir(repo)
+    print str(subprocess.call(fetch))
+    print  str(subprocess.call(merge))
 
 # Copyright Jonathan Gilson 2014
