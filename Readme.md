@@ -51,7 +51,7 @@ Run the following commands:
 
 `g:VundleHelper_Setup_Folders`
 
-**REQUIRED!** A list of directories that you want in your ~/.vim directory.  This option is great if you keep your backups and swaps in a centralized location.
+**Required!** A list of directories that you want in your ~/.vim directory.  This option is great if you keep your backups and swaps in a centralized location.
 
 Example:
 
