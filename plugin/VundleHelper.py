@@ -106,11 +106,11 @@ def VundleHelper_read_update_cache():
         return VundleHelper_write_last_update()
 
 def VundleHelper_get_last_update(dates):
-    date= float(date[0])
+    date= float(dates[0])
     return date
 
 def VundleHelper_get_next_update(dates):
-    date= float(date[1])
+    date= float(dates[1])
     return date
 
 def VundleHelper_write_last_update(days=30, flag=True):
