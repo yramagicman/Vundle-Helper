@@ -101,7 +101,7 @@ def VundleHelper_read_update_cache():
     except:
         print "File not found. Running updates and writing new file."
         time.sleep(2)
-        vim.command('PluginUpdate')
+        #vim.command('PluginUpdate')
         return VundleHelper_write_last_update()
 
 def VundleHelper_get_last_update(dates):

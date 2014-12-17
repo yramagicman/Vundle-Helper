@@ -46,6 +46,5 @@ command! VHUpdate call VundleHelper#Update()
 call VundleHelper#Update()
 call feedkeys('<CR>')
 
-call VundleHelper#SelfUpdate()
 
 " Copyright Jonathan Gilson 2014
