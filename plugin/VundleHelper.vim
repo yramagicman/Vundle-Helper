@@ -9,12 +9,10 @@ python sys.path.append(vim.eval('expand("<sfile>:h")'))
 "  Function(s)
 " --------------------------------
 function! VundleHelper#SelfUpdate()
-if g:VundleHelper_updated == 0
 python << endOfPython
-    from VundleHelper import VundleHelper_self_update
-    VundleHelper_self_update()
+from VundleHelper import VundleHelper_self_update
+VundleHelper_self_update()
 endOfPython
-endif
 endfunction
 autocmd! VimLeave *  call VundleHelper#SelfUpdate()
 
@@ -48,5 +46,6 @@ command! VHUpdate call VundleHelper#Update()
 call VundleHelper#Update()
 call feedkeys('<CR>')
 
+call VundleHelper#SelfUpdate()
 
 " Copyright Jonathan Gilson 2014

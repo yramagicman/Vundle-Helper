@@ -72,7 +72,6 @@ def VundleHelper_run_install():
     if len(VundleHelper_check_installation()) > 0:
         os.chdir(home + '/.vim/')
         call(['mkdir', '-p'] + setup_folders)
-        VundleHelper_write_last_update()
         if 'Vundle.vim' in VundleHelper_check_installation():
             VundleHelper_pkg_manager_install()
             # Source .vimrc to make sure the package manager is loaded
@@ -138,6 +137,7 @@ def VundleHelper_self_update():
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_last_update(dates)
     freq = VundleHelper_update_how_often()
+    print dates[2]
     if dates[2] == 'true':
         VundleHelper_git_opperation()
         VundleHelper_write_last_update(freq,False)
@@ -150,7 +150,7 @@ def VundleHelper_git_opperation():
     merge = ['git', 'reset', '--hard', 'origin/master']
     print "running update"
     os.chdir(repo)
-    print str(subprocess.call(fetch))
-    print  str(subprocess.call(merge))
+    print str(call(fetch))
+    print  str(call(merge))
 
 # Copyright Jonathan Gilson 2014
