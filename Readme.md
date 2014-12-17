@@ -8,7 +8,7 @@ A plugin for automatically synchronizing plugins across systems and keeping them
 1. Intro
 2. Requirements
 3. Usage
-    a. Installation
+    - Installation
 4. License
 5. Known Issues
 
