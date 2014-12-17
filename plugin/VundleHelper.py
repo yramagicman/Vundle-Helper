@@ -70,7 +70,7 @@ def VundleHelper_clean_up():
 
 def VundleHelper_run_install():
     if len(VundleHelper_check_installation()) > 0:
-        call(['mkdir', '-p', setup_folders])
+        call(['mkdir', '-p'] + setup_folders)
         if 'Vundle.vim' in VundleHelper_check_installation():
             VundleHelper_pkg_manager_install()
             # Source .vimrc to make sure the package manager is loaded
