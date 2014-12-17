@@ -151,7 +151,7 @@ def VundleHelper_git_opperation():
     merge = ['git', 'reset', '--hard', 'origin/master']
     print "running update" + '\n'
     os.chdir(repo)
-    print str(call(fetch) + '\n')
+    print str(call(fetch)) + '\n'
     print  str(call(merge))
 
 # Copyright Jonathan Gilson 2014
