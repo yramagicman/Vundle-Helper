@@ -41,7 +41,7 @@ Run the following commands:
     mkdir -p ~/.vim/after/plugin
     cd ~/.vim/after/plugin
     git submodule add  https://github.com/yramagicman/Vundle-Helper
-    echo "source ~/.vim/after/plugin/Vundle-Helper/plugin/VundleHelper.vim" >> pluginsync.vim
+    echo "source ~/.vim/after/plugin/Vundle-Helper/plugin/VundleHelper.vim" > pluginsync.vim
 
 ####Commands:
 
