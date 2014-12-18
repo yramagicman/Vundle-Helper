@@ -32,15 +32,18 @@ def VundleHelper_sanity_check():
 setup_folders, plugin_file = VundleHelper_sanity_check()
 
 def VundleHelper_pkg_manager_install():
+    """ Install Vundle. """
     os.chdir(home + '/.vim/bundle')
     call(['git', 'clone', 'https://github.com/gmarik/Vundle.vim.git'])
 
 def VundleHelper_check_dir():
+    """ List output of bundle directory. """
     installed_packages = check_output(['ls', home + '/.vim/bundle'])
     installed_packages = installed_packages.split('\n')
     return installed_packages
 
 def VundleHelper_read_bundle(file):
+    """ Read list of bundles out of file. """
     bundles = open(file, 'r')
     lines = bundles.read().split('\n')
     ret_val = []
@@ -51,6 +54,7 @@ def VundleHelper_read_bundle(file):
     return ret_val
 
 def VundleHelper_check_installation():
+    """ Read list of files and plugins and determine what's not installed. """
     to_install = VundleHelper_read_bundle(home + plugin_file)
     installed = VundleHelper_check_dir()
     not_installed = []
@@ -60,6 +64,8 @@ def VundleHelper_check_installation():
     return not_installed
 
 def VundleHelper_clean_up():
+    """ Read list and files and plugins and determine what needs to be removed.
+    """
     listed = VundleHelper_read_bundle(home + plugin_file)
     remove = VundleHelper_check_dir()
     to_remove = []
@@ -69,6 +75,7 @@ def VundleHelper_clean_up():
     return to_remove
 
 def VundleHelper_run_install():
+    """ Install packages """
     if len(VundleHelper_check_installation()) > 0:
         os.chdir(home + '/.vim/')
         call(['mkdir', '-p'] + setup_folders)
@@ -86,6 +93,7 @@ def VundleHelper_run_install():
         vim.command('PluginClean')
 
 def VundleHelper_update_how_often():
+    """ Get interval between updates. """
     often_set = int(vim.eval('exists("g:VundleHelper_Update_Frequency")'))
     if often_set:
         return vim.eval('g:VundleHelper_Update_Frequency')
@@ -93,6 +101,7 @@ def VundleHelper_update_how_often():
         return 30
 
 def VundleHelper_read_update_cache():
+    """ Read cached times into memory. """
     try:
         f = open(home + '/.vim/lastupdate', 'r')
         dates = f.read()
@@ -103,14 +112,17 @@ def VundleHelper_read_update_cache():
         return VundleHelper_write_last_update()
 
 def VundleHelper_get_last_update(dates):
-    date= float(dates[0])
+    """ Get date of last update. """
+    date = float(dates[0])
     return date
 
 def VundleHelper_get_next_update(dates):
-    date= float(dates[1])
+    """ Get date of next update. """
+    date = float(dates[1])
     return date
 
 def VundleHelper_write_last_update(days=30, flag=True):
+    """ Write update info to file. """
     next = days * 24 * 60 * 60
     f = open(home + '/.vim/lastupdate', 'w')
     f.write(str(time.time()) + '\n')
@@ -123,6 +135,7 @@ def VundleHelper_write_last_update(days=30, flag=True):
     return str(time.time()) + '\n' + str(time.time() + next)
 
 def VundleHelper_run_updates():
+    """ Run plugin updates. """
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_next_update(dates)
     freq = VundleHelper_update_how_often()
@@ -131,27 +144,25 @@ def VundleHelper_run_updates():
         VundleHelper_write_last_update(freq)
 
 def VundleHelper_self_update():
-    one_day = 1 * 24 * 60 * 60
+    """ Update VundleHelper. """
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_last_update(dates)
     freq = VundleHelper_update_how_often()
-    print dates[2]
+    # dates[2] is a string representation of a boolean value that determines
+    # when to update VundleHelper.
     if dates[2] == 'true':
         VundleHelper_git_opperation()
-        VundleHelper_write_last_update(freq,False)
+        VundleHelper_write_last_update(freq, False)
 
 def VundleHelper_git_opperation():
-    home = os.path.expanduser('~')
+    """ Git functions to update VundleHelper. """
     repo =  home + '/.vim/after/plugin/Vundle-Helper'
     # arrays used in subprocess.call and such
     fetch = ['git', 'fetch', '--all']
     merge = ['git', 'reset', '--hard', 'origin/master']
-    print 'running update'
-    print '\n'
+    print 'running update' + '\n'
     os.chdir(repo)
-    print str(call(fetch))
-    print '\n'
-    print  str(call(merge))
-    print '\n'
+    print str(call(fetch)) + '\n'
+    print  str(call(merge)) + '\n'
 
 # Copyright Jonathan Gilson 2014
