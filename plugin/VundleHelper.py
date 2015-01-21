@@ -96,7 +96,7 @@ def VundleHelper_update_how_often():
     """ Get interval between updates. """
     often_set = int(vim.eval('exists("g:VundleHelper_Update_Frequency")'))
     if often_set:
-        return vim.eval('g:VundleHelper_Update_Frequency')
+        return int(vim.eval('g:VundleHelper_Update_Frequency'))
     else:
         return 30
 
