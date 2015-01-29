@@ -45,11 +45,14 @@ def VundleHelper_check_dir():
 def VundleHelper_read_bundle(file):
     """ Read list of bundles out of file. """
     bundles = open(file, 'r')
-    lines = bundles.read().split('\n')
+    lines = bundles.read().split('\n').strip()
     ret_val = []
     for line in lines:
         if ('Plugin' in line or 'plugin' in line) and ('"' not in line):
-            ret_val.append(line[line.index('/') + 1: -1])
+            try:
+                ret_val.append(line[line.index('/') + 1: -1])
+            except:
+                ret_val.append(line[line.index('\'') + 1: -1])
     bundles.close()
     return ret_val
 
