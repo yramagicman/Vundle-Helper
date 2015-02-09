@@ -68,7 +68,8 @@ def VundleHelper_check_installation():
     return not_installed
 
 def VundleHelper_clean_up():
-    """ Read list and files and plugins and determine what needs to be removed.
+    """
+    Read list and files and plugins and determine what needs to be removed.
     """
     listed = VundleHelper_read_bundle(home + plugin_file)
     remove = VundleHelper_check_dir()
