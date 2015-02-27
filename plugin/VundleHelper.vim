@@ -31,13 +31,6 @@ VundleHelper_run_updates()
 endOfPython
 endfunction
 
-function! VundleHelper#UpdateNotify()
-python << endOfPython
-from VundleHelper import VundleHelper_update_notify
-VundleHelper_update_notify()
-endOfPython
-endfunction
-
 " --------------------------------
 "  Expose our commands to the user
 " --------------------------------
@@ -49,7 +42,6 @@ command! VHUpdate call VundleHelper#Update()
 
 
 " Update VundleHelper on vim leave based on timing.
-autocmd! VimEnter * call VundleHelper#UpdateNotify()
 autocmd! VimLeavePre * call VundleHelper#Update()
 autocmd! VimLeave *  call VundleHelper#SelfUpdate()
 

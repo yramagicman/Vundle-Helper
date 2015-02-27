@@ -148,15 +148,6 @@ def VundleHelper_run_updates():
         vim.command('PluginUpdate')
         VundleHelper_write_last_update(freq)
 
-def VundleHelper_update_notify():
-    """ Run plugin updates. """
-    dates = VundleHelper_read_update_cache()
-    next = VundleHelper_get_next_update(dates)
-    freq = VundleHelper_update_how_often()
-    if float(time.time()) > float(next):
-        print "Updating on close"
-        time.sleep(2)
-
 def VundleHelper_self_update():
     """ Update VundleHelper. """
     dates = VundleHelper_read_update_cache()
