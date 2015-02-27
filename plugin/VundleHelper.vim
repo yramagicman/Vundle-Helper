@@ -39,11 +39,10 @@ call VundleHelper#Install()
 call feedkeys('<CR>')
 
 command! VHUpdate call VundleHelper#Update()
-call VundleHelper#Update()
-call feedkeys('<CR>')
 
 
 " Update VundleHelper on vim leave based on timing.
+autocmd! VimLeave * call VundleHelper#Update()
 autocmd! VimLeave *  call VundleHelper#SelfUpdate()
 
 " Copyright Jonathan Gilson 2014
