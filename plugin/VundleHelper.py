@@ -155,6 +155,7 @@ def VundleHelper_update_notify():
     freq = VundleHelper_update_how_often()
     if float(time.time()) > float(next):
         print "Updating on close"
+        time.sleep(2)
 
 def VundleHelper_self_update():
     """ Update VundleHelper. """
