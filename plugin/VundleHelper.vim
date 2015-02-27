@@ -42,7 +42,7 @@ command! VHUpdate call VundleHelper#Update()
 
 
 " Update VundleHelper on vim leave based on timing.
-autocmd! VimLeave * call VundleHelper#Update()
+autocmd! VimLeavePre * call VundleHelper#Update()
 autocmd! VimLeave *  call VundleHelper#SelfUpdate()
 
 " Copyright Jonathan Gilson 2014
