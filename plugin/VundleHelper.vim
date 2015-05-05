@@ -40,7 +40,7 @@ call feedkeys('<CR>')
 
 command! VHUpdate call VundleHelper#Update()
 
-
+autocmd! CursorHold * call VundleHelper#UpdateNotify()
 " Update VundleHelper on vim leave based on timing.
 autocmd! VimLeavePre * call VundleHelper#Update()
 autocmd! VimLeave *  call VundleHelper#SelfUpdate()
