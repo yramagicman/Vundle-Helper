@@ -31,6 +31,12 @@ VundleHelper_run_updates()
 endOfPython
 endfunction
 
+function! VundleHelper#UpdateNotifyCheck()
+python << endOfPython
+from VundleHelper import VundleHelper_update_notify_check
+VundleHelper_update_notify_check()
+endOfPython
+endfunction
 " --------------------------------
 "  Expose our commands to the user
 " --------------------------------
