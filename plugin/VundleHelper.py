@@ -3,8 +3,8 @@ from subprocess import call, check_output
 home = os.path.expanduser('~')
 
 def VundleHelper_sanity_check():
-    # Make sure variables exist. The script only requires
-    # g:VundleHelper_Setup_Folders.
+    """Make sure variables exist. The script only requires
+    g:VundleHelper_Setup_Folders."""
     dir_tree_defined = int(vim.eval('exists("g:VundleHelper_Setup_Folders")'))
     plugin_file_defined = int(vim.eval('exists("g:VundleHelper_Plugin_File")'))
     # Check for .vim/bundle. The script breaks without it.
@@ -147,6 +147,13 @@ def VundleHelper_run_updates():
     if float(time.time()) > float(next):
         vim.command('PluginUpdate')
         VundleHelper_write_last_update(freq)
+
+def VundleHelper_update_notify_check():
+    """ Run plugin updates. """
+    dates = VundleHelper_read_update_cache()
+    next = VundleHelper_get_next_update(dates)
+    if float(time.time()) > float(next):
+        vim.command('let g:VundleHelperUpdateNotify=1')
 
 def VundleHelper_self_update():
     """ Update VundleHelper. """
