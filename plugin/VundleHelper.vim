@@ -43,6 +43,7 @@ endfunction
 command! VHInstall call VundleHelper#Install()
 call VundleHelper#Install()
 call feedkeys('<CR>')
+call VundleHelper#UpdateNotifyCheck()
 
 command! VHUpdate call VundleHelper#Update()
 
