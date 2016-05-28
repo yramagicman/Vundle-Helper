@@ -1,6 +1,10 @@
-import os, vim, datetime, time
+import os
+import vim
+import datetime
+import time
 from subprocess import call, check_output
 home = os.path.expanduser('~')
+
 
 def VundleHelper_sanity_check():
     """Make sure variables exist. The script only requires
@@ -9,19 +13,19 @@ def VundleHelper_sanity_check():
     plugin_file_defined = int(vim.eval('exists("g:VundleHelper_Plugin_File")'))
     # Check for .vim/bundle. The script breaks without it.
     if not os.path.exists(home + '/.vim/bundle'):
-        cmd= ['mkdir', '-p']
+        cmd = ['mkdir', '-p']
         cmd = cmd + ['bundle']
         os.chdir(home + '/.vim/')
         call(cmd)
     # If both config variables are defined, return their values.
-    if dir_tree_defined and  plugin_file_defined:
+    if dir_tree_defined and plugin_file_defined:
         dir_tree = vim.eval("g:VundleHelper_Setup_Folders")
         plugin_file = vim.eval("g:VundleHelper_Plugin_File")
         return dir_tree, plugin_file
     # If g:VundleHelper_Setup_Folders is defined, return its value and the location
     # of the .vimrc file
     elif dir_tree_defined and not plugin_file_defined:
-        plugin_file= vim.eval('$MYVIMRC')
+        plugin_file = vim.eval('$MYVIMRC')
         dir_tree = vim.eval("g:VundleHelper_Setup_Folders")
         return dir_tree, plugin_file
     # When all else fails print an error message.
@@ -31,16 +35,19 @@ def VundleHelper_sanity_check():
 # Set variables globally
 setup_folders, plugin_file = VundleHelper_sanity_check()
 
+
 def VundleHelper_pkg_manager_install():
     """ Install Vundle. """
     os.chdir(home + '/.vim/bundle')
     call(['git', 'clone', 'https://github.com/gmarik/Vundle.vim.git'])
+
 
 def VundleHelper_check_dir():
     """ List output of bundle directory. """
     installed_packages = check_output(['ls', home + '/.vim/bundle'])
     installed_packages = installed_packages.split('\n')
     return installed_packages
+
 
 def VundleHelper_read_bundle(file):
     """ Read list of bundles out of file. """
@@ -57,6 +64,7 @@ def VundleHelper_read_bundle(file):
     bundles.close()
     return ret_val
 
+
 def VundleHelper_check_installation():
     """ Read list of files and plugins and determine what's not installed. """
     to_install = VundleHelper_read_bundle(home + plugin_file)
@@ -66,6 +74,7 @@ def VundleHelper_check_installation():
         if i not in installed:
             not_installed.append(i)
     return not_installed
+
 
 def VundleHelper_clean_up():
     """
@@ -78,6 +87,7 @@ def VundleHelper_clean_up():
         if i not in listed:
             to_remove.append(i)
     return to_remove
+
 
 def VundleHelper_run_install():
     """ Install packages """
@@ -97,6 +107,7 @@ def VundleHelper_run_install():
     if len(VundleHelper_clean_up()) > 1:
         vim.command('PluginClean')
 
+
 def VundleHelper_update_how_often():
     """ Get interval between updates. """
     often_set = int(vim.eval('exists("g:VundleHelper_Update_Frequency")'))
@@ -104,6 +115,7 @@ def VundleHelper_update_how_often():
         return int(vim.eval('g:VundleHelper_Update_Frequency'))
     else:
         return 30
+
 
 def VundleHelper_read_update_cache():
     """ Read cached times into memory. """
@@ -116,15 +128,18 @@ def VundleHelper_read_update_cache():
         print "Update cache not found. Running updates and writing new file."
         return VundleHelper_write_last_update()
 
+
 def VundleHelper_get_last_update(dates):
     """ Get date of last update. """
     date = float(dates[0])
     return date
 
+
 def VundleHelper_get_next_update(dates):
     """ Get date of next update. """
     date = float(dates[1])
     return date
+
 
 def VundleHelper_write_last_update(days=30, flag=True):
     """ Write update info to file. """
@@ -139,6 +154,7 @@ def VundleHelper_write_last_update(days=30, flag=True):
     f.close()
     return str(time.time()) + '\n' + str(time.time() + next)
 
+
 def VundleHelper_run_updates():
     """ Run plugin updates. """
     dates = VundleHelper_read_update_cache()
@@ -148,12 +164,14 @@ def VundleHelper_run_updates():
         vim.command('PluginUpdate')
         VundleHelper_write_last_update(freq)
 
+
 def VundleHelper_update_notify_check():
     """ Run plugin updates. """
     dates = VundleHelper_read_update_cache()
     next = VundleHelper_get_next_update(dates)
     if float(time.time()) > float(next):
         vim.command('let g:VundleHelperUpdateNotify=1')
+
 
 def VundleHelper_self_update():
     """ Update VundleHelper. """
@@ -166,15 +184,16 @@ def VundleHelper_self_update():
         VundleHelper_git_opperation()
         VundleHelper_write_last_update(freq, False)
 
+
 def VundleHelper_git_opperation():
     """ Git functions to update VundleHelper. """
-    repo =  home + '/.vim/after/plugin/Vundle-Helper'
+    repo = home + '/.vim/after/plugin/Vundle-Helper'
     # arrays used in subprocess.call and such
     fetch = ['git', 'fetch', '--all']
     merge = ['git', 'reset', '--hard', 'origin/master']
     print 'running update' + '\n'
     os.chdir(repo)
     print str(call(fetch)) + '\n'
-    print  str(call(merge)) + '\n'
+    print str(call(merge)) + '\n'
 
 # Copyright Jonathan Gilson 2014
