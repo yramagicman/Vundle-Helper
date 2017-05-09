@@ -2,11 +2,6 @@
 A plugin for automatically synchronizing plugins across systems
 and keeping them updated.
 
-<a
-href="https://www.youtube.com/watch?v=G_5oD8t2F1Q&feature=youtu.be&t=29"><img
-src="http://i.giflike.com/ZfH9dkI.gif" title="Working on not working (Click to
-see on Youtube)" /></a>
-
 **IMPORTANT**: Make sure you read the installation instructions. This plugin
 isn't meant to live in your .vim/bundle folder. If you put it there, it can't
 do its job when you switch computers.
@@ -114,17 +109,15 @@ that you don't remove the copyright notice.
 
 ## Known issues
 
-1. Plugins that don't have a forward slash ("/") in the string aren't
-recognized.
 
-2. Currently this plugin can't be installed via Vundle and work the way it's
+1. Currently this plugin can't be installed via Vundle and work the way it's
 designed to work. I intend to write an install function that enables this, but
 currently I don't know of a good way to do this. Ideally I'd use a git
 post-checkout hook to hard link the files into the right location, but I don't
 know how to implement that. I'll probably end up implementing something in
 python.
 
-3. Doesn't work on Windows, and I have no plans of porting to Windows. I use os
+2. Doesn't work on Windows, and I have no plans of porting to Windows. I use os
 level commands to get directory contents and work with the file system because
 that is what I know. I could re-write the same functionality purely in python,
 but I'm fairly sure that os level commands are more reliable and probably
